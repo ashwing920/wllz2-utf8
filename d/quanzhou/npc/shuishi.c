@@ -1,0 +1,39 @@
+//Cracked by Kafei
+// bing.c 官兵
+
+#include <ansi.h>
+
+inherit NPC;
+
+void create()
+{
+	set_name("水师士兵", ({ "shuishi bing", "bing" }));
+	set("age", 22);
+	set("gender", "男性");
+	set("long", "水师士兵精于水战，会驾战船。\n");
+	set("attitude", "heroism");
+
+	set("str", 24);
+	set("dex", 16);
+	set("combat_exp", 10000);
+	set("shen_type", 0);
+
+	set_skill("unarmed", 40);
+	set_skill("dodge", 40);
+	set_skill("parry", 40);
+	set_skill("blade", 40);
+	set_skill("force", 40);
+	set_temp("apply/attack", 40);
+	set_temp("apply/defense", 40);
+	set_temp("apply/damage", 20);
+	set_temp("apply/armor", 40);
+
+	set("chat_chance_combat", 10);
+	set("chat_msg_combat", ({
+		"官兵喝道：大胆刁民，竟敢造反不成？\n",
+		"官兵喝道：跑得了和尚跑不了庙，你还是快快束手就擒！\n",
+	}));
+	setup();
+	carry_object("/clone/weapon/gangdao")->wield();
+	carry_object("/clone/cloth/junfu")->wear();
+}

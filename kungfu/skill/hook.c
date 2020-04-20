@@ -1,0 +1,4 @@
+// hook.c
+
+inherit SKILL;
+

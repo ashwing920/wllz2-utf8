@@ -1,0 +1,32 @@
+//逍遥聊天房间
+
+inherit CHAT_ROOM;
+
+void create()
+{
+        set("short","$HIR$商议室$NOR$");
+        set("long", @LONG
+ $HIG$     _.------.__
+      /'           ``~\_ 
+   /~'   //             `\
+  /     (   _ //\// _  )  ) 
+ (     /  /' `    /' `  //   
+ (    )`(/  $HIR$ o$NOR$)  (   $HIR$o$NOR$$HIG$)\/  
+ \ (  -'        /)     )    
+ \ \ (         '~      ) 
+  \  (      /__.-.-._, /
+   ) \`-)   `\ ~~~,/  /'
+  `\_.-~ \    `~~~   /
+     /    `\._     /'
+    /        /`--~'
+   `-.__    /
+        `~~'  $NOR$     
+LONG
+);
+
+        set("exits", ([
+                "out" : "/u/bmw/shuifang",
+        ]) );
+        ::create();
+        replace_program(ROOM);
+}

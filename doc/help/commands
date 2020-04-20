@@ -1,0 +1,43 @@
+────────────────────────────────
+[1;37;44m【游戏指令大全】　　　　　　　　　　　　　　　　　              [0m
+────────────────────────────────
+本游戏中的命令分为下列几类，使用[[1;32mhelp 指令[0m]可获得详细帮助。带[1;32m|[0m则
+表示也可以用该指令代替。
+────────────────────────────────
+[1;37;44m【玩家命令】                                                    [0m
+────────────────────────────────
+alias   　　boss     　　bossgone　　cls     　　describe
+emote       finger       femote      help        hp
+id          inventory    nick        passwd      save
+score       set          sos         semote      semote1
+suicide     setfrd       time        title       topten
+unset       unsetfrd     uptime      version     verdor
+who         wimpy        meinfo      makelove    paimai
+quit
+────────────────────────────────
+[1;37;44m【探险命令】                                                    [0m
+────────────────────────────────
+ansuan      ask          attack      beg         buy
+check       close        come        drop        drink
+eat         fight        fill        follow      get
+give        go           halt        hit         hubo
+jiebai      kantou       kill        location    look
+nuoyi       open         pour        put         qiangjian
+release     remove       reply       ride        run
+say         setwmsg      shexin      shout       sleep
+stay        steal        stop        surrender   team
+tell        to           touxi       train       tune
+unride      unwield      vote        wear        whisper
+wield
+────────────────────────────────
+[1;37;44m【武功命令】                                                    [0m
+────────────────────────────────
+abadon|fangqi            apprentice|bai          enable|jifa
+enforce|jiali            exercise|dazuo          exert|yun
+expell|kaichu            jingzuo                 learn|xue
+perform|yong             persuade|quanjia        practice|lian
+prepare|bei              recruit|shou            research|yanjiu
+respirate|tuna           skills|cha              study|du
+────────────────────────────────
+[1;37;44m　　　　　　　　　　　　　　　　蝴蝶君[Email:robert_st@sina.com][0m
+────────────────────────────────

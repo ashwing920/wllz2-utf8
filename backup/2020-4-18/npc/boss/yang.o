@@ -1,0 +1,8 @@
+#/d/city/npc/yang.c
+dbase (["qi":232,"per":17,"shen":400,"str":29,"title":"杂货铺老板","jiali":0,"kar":25,"cor":20,"shen_type":1,"startroom":"/d/city/zahuopu","con":22,"water":390,"eff_qi":232,"long":"杨老板是土生土长的扬州人，做了几十年的小买卖。","max_qi":232,"vendor_goods":(["/clone/cloth/caoxie":1,"/clone/cloth/surcoat":1,"/clone/misc/mabudai":1,"/clone/cloth/shoutao":1,"/clone/cloth/pixue":1,"/clone/cloth/huwan":1,"/clone/cloth/jinsijia":1,"/clone/cloth/toukui":1,"/clone/misc/sleepbag":1,"/clone/cloth/tieshou":1,"/clone/misc/fire":1,"/clone/cloth/cycle":1,"/clone/cloth/huyao":1,"/clone/cloth/shield":1,"/clone/cloth/zhitao":1,"/clone/cloth/beixin":1,]),"int":28,"race":"人类","jingli":0,"name":"杨永福","dex":29,"spi":21,"eff_jing":145,"food":390,"pighead":0,"default_actions":,"actions":,"id":"yang yongfu","jing":145,"gender":"男性","combat_exp":40000,"max_jing":145,"attitude":"friendly","neili":0,"max_neili":0,"age":45,])
+skills (["dodge":50,"unarmed":50,])
+autoload ({})
+SAVE_NAME "yang"
+price_ratio 10
+minimum_bid 10000
+close_time 1587206187

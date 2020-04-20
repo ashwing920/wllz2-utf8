@@ -1,0 +1,15 @@
+/adm/obj/securityd
+/adm/daemons/aliasd
+/adm/daemons/band
+/adm/daemons/backupd
+/adm/daemons/chinesed
+/adm/daemons/combatd
+/adm/daemons/emoted
+/adm/daemons/eventd
+/adm/daemons/pkd
+/adm/daemons/toptend
+/adm/daemons/virtuald
+/adm/daemons/scheduled
+/adm/daemons/vrm_server
+/adm/daemons/storyd
+/adm/daemons/network/dns_master

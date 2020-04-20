@@ -1,0 +1,3 @@
+#/data/room/xiuxian/room4.c
+dbase (["exits":(["east":"/data/room/xiuxian/room2",]),"no_clean_up":0,"playerhouse":1,"sleep_room":1,"owner":"宗姑","private_room":1,])
+autoload ({})

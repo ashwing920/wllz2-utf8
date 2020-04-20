@@ -1,0 +1,3 @@
+#/data/room/robert/room1.c
+dbase (["key":"key of robert","exits":(["south":"/data/room/robert/xiaoyuan","north":"/data/room/robert/room2","west":"/data/room/robert/room3",]),"playerhouse":1,"no_clean_up":0,"item_desc":(["south":0,]),"owner":"欧阳娴","private_room":1,])
+autoload ({})

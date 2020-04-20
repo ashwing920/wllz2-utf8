@@ -1,0 +1,67 @@
+// qlist50000.c
+
+inherit SKILL;
+#include <ansi.h>
+
+mapping *quest = ({
+	([      "quest":                "心法精要",
+		"quest_type":           "找",
+		"where":		"桃源书屋",
+		"diff":			1,
+	]),
+	([      "quest":                "心法总诀",
+		"quest_type":           "找",
+		"where":		"桃源书屋",
+		"diff":			1,
+	]),
+	([      "quest":                "掌法入门",
+		"quest_type":           "找",
+		"where":		"桃源书屋",
+		"diff":			1,
+	]),
+	([      "quest":                "掌法进阶",
+		"quest_type":           "找",
+		"where":		"桃源书屋",
+		"diff":			1,
+	]),
+	([      "quest":                "掌法精要",
+		"quest_type":           "找",
+		"where":		"桃源书屋",
+		"diff":			1,
+	]),
+	([      "quest":                "掌法总诀",
+		"quest_type":           "找",
+		"where":		"桃源书屋",
+		"diff":			1,
+	]),
+	([      "quest":                "道家学说一集",
+		"quest_type":           "找",
+		"where":		"城隍庙",
+		"diff":			1,
+	]),
+	([      "quest":                "道家学说二集",
+		"quest_type":           "找",
+		"where":		"城隍庙",
+		"diff":			1,
+	]),
+	([      "quest":                "道家学说三集",
+		"quest_type":           "找",
+		"where":		"城隍庙",
+		"diff":			1,
+	]),
+	([      "quest":                "心法精要",
+		"quest_type":           "找",
+		"where":		"桃源书屋",
+		"diff":			1,
+	]),
+	([      "quest":                "心法总诀",
+		"quest_type":           "找",
+		"where":		"桃源书屋",
+		"diff":			1,
+	]),
+
+});
+mapping query_quest()
+{
+	return quest[random(sizeof(quest))];
+}
