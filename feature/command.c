@@ -78,9 +78,10 @@ mixed *query_commands() { return commands(); }
 
 int force_me(string cmd)
 {
+	//write(sprintf("forceme:%s",cmd));
 	if( geteuid(previous_object()) != ROOT_UID )
 		return 0;
-
+	
 	return command( this_object()->process_input(cmd) );
 }
 

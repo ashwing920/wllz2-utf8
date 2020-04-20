@@ -1,6 +1,6 @@
 // util.c
 #include <localtime.h>
-
+#include <ansi.h>
 object get_object(string name)
 {
     object ob;
@@ -9,6 +9,22 @@ object get_object(string name)
     return load_object(name);
 }
 
+string remove_ansi(string str)
+{
+        int i;
+        string *color = ({ BLK, RED, GRN, YEL, BLU, MAG, CYN, WHT,
+                           HIR, HIG, HIY, HIB, HIM, HIC, HIW,
+                           HBRED, HBGRN, HBYEL, HBBLU, HBMAG, HBCYN, HBWHT,
+                           BBLK, BRED, BYEL, BBLU, BMAG, BCYN,
+                           NOR, BOLD });
+                           
+        if( !str || !stringp(str) ) return 0;
+        i = sizeof(color);
+        while( i-- ) {
+                str = replace_string(str, color[i], "");
+        }
+        return str;
+}
 varargs string appromix_time(int n, int flag)
 {
         string s;

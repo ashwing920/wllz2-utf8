@@ -520,3 +520,29 @@
 /feature/message.c line 163: Illegal LHS before 
 /cmds/usr/maphere.c line 14: syntax error before  X,Y;
 /cmds/usr/maphere.c line 38: Undefined function addn before ;
+/adm/daemons/pathd.c line 40: Undefined function remove_ansi before  == name )
+/adm/daemons/pathd.c line 40: == always false because of incompatible types ( unknown vs string ). before 
+/adm/daemons/pathd.c line 40: Undefined function remove_ansi before  == name )
+/adm/daemons/pathd.c line 40: == always false because of incompatible types ( unknown vs string ). before 
+/adm/daemons/pathd.c line 40: Undefined function remove_ansi before  == name )
+/adm/daemons/pathd.c line 40: == always false because of incompatible types ( unknown vs string ). before 
+/adm/daemons/pathd.c line 40: Undefined function remove_ansi before  == name )
+/adm/daemons/pathd.c line 40: == always false because of incompatible types ( unknown vs string ). before 
+/adm/daemons/pathd.c line 9: Undefined variable 'BLK' before  RED, GRN, YEL, BLU,
+/adm/daemons/pathd.c line 9: Undefined variable 'RED' before  GRN, YEL, BLU, MAG,
+/adm/daemons/pathd.c line 9: Undefined variable 'GRN' before  YEL, BLU, MAG, CYN,
+/adm/daemons/pathd.c line 9: Undefined variable 'YEL' before  BLU, MAG, CYN, WHT,
+/adm/daemons/pathd.c line 9: Undefined variable 'BLU' before  MAG, CYN, WHT,
+/adm/daemons/pathd.c line 9: Undefined variable 'MAG' before  CYN, WHT,
+/cmds/usr/walk.c line 47: Undefined function force_me before 
+/cmds/usr/walk.c line 48: syntax error before ->set("env/brief", b
+/cmds/usr/walk.c line 48: syntax error before ->set("env/brief", b
+/cmds/usr/walk.c line 45: syntax error before ;
+/cmds/usr/walk.c line 46: syntax error before );
+/cmds/usr/walk.c line 41: Bad type for argument 2 of query ( int vs object ) before ;
+/cmds/usr/walk.c line 42: Wrong number of arguments to set
+    Expected: 2  Got: 3 before ;
+/cmds/usr/walk.c line 48: Wrong number of arguments to set
+    Expected: 2  Got: 3 before ;
+/cmds/usr/walk.c line 42: Wrong number of arguments to set
+    Expected: 2  Got: 3 before ;
