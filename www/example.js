@@ -40,7 +40,9 @@ term.unicode.activeVersion = '11';
 const fitAddon  = new FitAddon.FitAddon();
 term.loadAddon(fitAddon);
 
-
+ const webLinksAddon = new WebLinksAddon.WebLinksAddon();
+ term.loadAddon(webLinksAddon)
+  
 let history = [];
 let history_index = -1;
 let current_command = "";
@@ -110,6 +112,8 @@ document.addEventListener("DOMContentLoaded", function () {
   fitAddon.fit();
 
   let ws = new_ws(get_appropriate_ws_url(""), "ascii");
+  
+ 
   const attachAddon = new AttachAddon.AttachAddon(ws);
   term.loadAddon(attachAddon);
   el_input.focus();

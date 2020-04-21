@@ -83,3 +83,79 @@ varargs string appromix_time(int n, int flag)
         if( flag ) s += "以后";
         return s;
 }
+string sort_string(string input, int width, int prefix)
+{
+        int i;
+        int sl;
+        int len;
+        int esc;
+        string result;
+
+        result = "";
+
+        len = prefix;
+        esc = 0;
+        sl = strlen(input);
+        for (i = 0; i < sl; i++) {
+                if( len >= width && input[i] != '\n' ) {
+                        int k;
+                        k = i;
+                        if( input[i] == 27 )
+                                while (k < sl && input[k++] != 'm');
+
+                        switch ((k < sl - 1) ? input[k..k+1] : 0)
+                        {
+                        case "：":
+                        case "”":
+                        case "。":
+                        case "，":
+                        case "；":
+                        case "）":
+                        case " )":
+                        case "！":
+                        case "？":
+                        case "、":
+                                if( k != i ) {
+                                        result += input[i..k + 1];
+                                        i = k + 1;
+                                        continue;
+                                }
+                                break;
+                        default:
+                                len = 0;
+                                result += "\n";
+                                break;
+                        }
+                }
+
+                if( input[i] == 27 )
+                        esc = 1;
+
+                if( ! esc ) {
+                        if( input[i] > 160 ) {
+                                result += input[i..i+1];
+                                i ++;
+                                len += 2;
+                                continue;
+                        }
+                        if( input[i] == '\n' ) {
+                                result += "\n";
+                                len = 0;
+                                continue;
+                        }
+                }
+
+                result += input[i..i];
+                if( ! esc ) len++;
+
+                if( esc && input[i] == 'm' )
+                        esc = 0;
+        }
+
+        if( i < sl )
+                result += input[i..sl-1];
+
+        if( len ) result += "\n";
+
+        return result;
+}

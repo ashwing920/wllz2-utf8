@@ -62,7 +62,6 @@ void heart_beat()
 	if(!me || !environment(me)) return;
 
 	my = query_entire_dbase();
-
 	if (userp(me) && living(me) && mapp(my["env"]))
 	{
 		// update prompt
@@ -75,7 +74,6 @@ void heart_beat()
 		}
 		
 	}
-
 	if(userp(me) && !interactive(me) && me->query_temp("biguan")){
 		if(me->query_temp("breakup"))
 			me->breakup();
@@ -87,7 +85,6 @@ void heart_beat()
 		tell_room(environment(),HIB"\n天空中突然出现一个黑洞，一股阴冷刺骨地寒风将"+ me->name(1)+"卷了进去。\n\n"NOR);
 		me->move("/d/death/gate");
 	}
-
 	if( my["eff_qi"] < 0 || my["eff_jing"] < 0) {
 		die();
 		return;
@@ -99,7 +96,6 @@ void heart_beat()
 		if (! me || ! living(me))
 			return;
 	}
-
 	if( is_busy() ) {
 		continue_action();
 		return;
@@ -124,7 +120,6 @@ void heart_beat()
 	else tick = t + 5 + random(10);
 
 	cnd_flag = update_condition();
-
 	if (! me) return;
 
 	if(((cnd_flag & CND_NO_HEAL_UP) || !heal_up())
