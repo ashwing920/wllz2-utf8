@@ -32,7 +32,7 @@ int main(object me,string arg)
 			
 		tmp = clean_color(arg);
 
-		if(strlen(tmp) > 10)
+		if(strlen(tmp) > 5)
 			return notify_fail("帮会名称最多只能五个字，请重新设定。\n");
 	
 		if(!is_chinese(tmp))

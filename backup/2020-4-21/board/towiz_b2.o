@@ -1,0 +1,2 @@
+#/inherit/misc/bboard.c
+dbase (["no_get":1,"board_id":"towiz_b2","name":"玩家意见留言板","id":"board","location":"/d/wizard/towiz_room","long":"这是一个专供玩家提出建议使用的留言板。","capacity":10000,"notes":({}),])

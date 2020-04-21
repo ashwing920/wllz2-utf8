@@ -97,7 +97,7 @@ int make_horse(string arg)
 	if(!arg || arg == "")
 		return notify_fail("你要给你的马匹起个什么名字？\n");
 
-	if( strlen(arg) > 40 )
+	if( strlen(arg) > 20 )
 		return notify_fail("你取的名字太长了，想一个短一点的吧。\n");
 
 

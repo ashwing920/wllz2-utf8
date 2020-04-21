@@ -13,7 +13,7 @@ int main(object me, string arg)
 
 	tmp = clean_color(arg);
 
-	if(strlen(tmp) > 24 )
+	if(strlen(tmp) > 12 )
 		return notify_fail("你的绰号太长了，想一个短一点的、响亮一点的。\n");
 
 	if(!CHECK_D->check_msg(arg))

@@ -1,0 +1,4 @@
+#/clone/user/user.c
+conditions (["ill_shanghan":14,])
+dbase (["qi":100,"per":20,"env":(["prompt":"time","wimpy":60,]),"register_time":1587354146,"shen":0,"help":1,"str":23,"title":"平民百姓","board_last_read":(["news_b":1586688516,]),"kar":25,"cor":14,"shen_type":0,"change2":1,"con":25,"change1":1,"water":11,"eff_qi":100,"max_qi":100,"registered":1,"login_online":3,"int":25,"race":"人类","mud_age":2985,"jingli":0,"name":"龙凤","dex":19,"eff_jing":100,"spi":17,"potential":100,"food":11,"channels":({"chat","rumor","music","dealer","party","master","banghui","wllz","frds","tt",}),"pighead":0,"actions":,"id":"longfeng","default_actions":,"jing":100,"gender":"男性","change":1,"combat_exp":1,"max_jing":100,"birthday":1587354146,"age":14,])
+autoload ({})

@@ -932,8 +932,11 @@ int check_legal_name(string name)
 		write("对不起，这种名字会造成其他人的困扰。\n");
 		return 0;
 	}
-
-
+	if (name=="唐" || name=="段" || name=="欧阳" || name=="慕容" || name=="本")
+	{
+		write("对不起，这种名字会造成其他人的困扰。\n");
+		return 0;
+	}
 	return 1;
 
 }

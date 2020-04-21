@@ -95,10 +95,10 @@ void attempt_apprentice(object ob)
 	name = ob->query("name");
 	name = replace_string(name,"唐","");
 	switch(strlen(name)){
-		case 2:	new_name = "唐" + name;break;
-		case 4:	new_name = "唐" + name[2..4];break;
-		case 6: new_name = "唐" + name[4..6];break;
-		case 8: new_name = "唐" + name[6..8];break;
+		case 1:	new_name = "唐" + name;break;
+		case 2:	new_name = "唐" + name[1..1];break;
+		case 3: new_name = "唐" + name[2..2];break;
+		case 4: new_name = "唐" + name[3..3];break;
 		default:
 	}
 	ob->set("name",new_name);

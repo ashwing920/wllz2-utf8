@@ -546,3 +546,5 @@
     Expected: 2  Got: 3 before ;
 /cmds/usr/walk.c line 42: Wrong number of arguments to set
     Expected: 2  Got: 3 before ;
+/kungfu/class/tianlong/kurong.c line 386: syntax error before  = "本" + name[strl
+/kungfu/class/tianlong/kurong.c line 386: Illegal LHS before 

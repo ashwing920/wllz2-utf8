@@ -371,6 +371,7 @@ string ask_join()
 
 int do_kneel()
 {
+
 	object me = this_player();
 
 	string name, new_name;
@@ -382,8 +383,9 @@ int do_kneel()
 		"$n说偈道：\n“一微尘中入三昧，成就一切微尘定，而彼微尘亦不增，于一普现难思刹。”\n"
 		"手掌提起，$N满头乌发尽数落下，头顶光秃秃地更无一根头发，便是用剃刀来剃亦无这等干净。\n\n",me, this_object());
 	name = me->query("name");
-	new_name = "本" + name[0..1];
-	command("say 从今以后你的法名叫做" + new_name + "。");
+	write(sprintf("name:(%s),len:(%d)\n",name,strlen(name)));
+	new_name = "本" + name[strlen(name)-1..strlen(name)-1];
+	command("say 从今以后你的法名1叫做" + new_name + "。");
 	command("smile");
 	me->delete_temp("pending/join_bonze");
 	me->set("name", new_name);

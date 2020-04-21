@@ -93,7 +93,7 @@ int do_zhu(string arg)
 
 	tmp = clean_color(w_name);
 	
-	if(strlen(tmp) > 8 || strlen(tmp) < 2)
+	if(strlen(tmp) > 4 || strlen(tmp) < 1)
 		return notify_fail(name() +"说道：兵器的名字必须为 1 到 4 个字。\n");
 	
 	i=strlen(tmp);

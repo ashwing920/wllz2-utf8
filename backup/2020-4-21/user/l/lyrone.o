@@ -1,0 +1,4 @@
+#/clone/user/user.c
+conditions ([])
+dbase (["qi":100,"kill_family":0,"thief":0,"per":18,"env":(["wimpy":60,]),"register_time":1587344373,"shen":0,"str":17,"help":4,"score":0,"title":"平民百姓","kar":25,"cor":25,"startroom":"/d/city/wumiao","shen_type":0,"con":16,"change2":1,"water":226,"change1":1,"eff_qi":100,"my_pker":"蒙面杀手","max_qi":100,"registered":1,"login_online":1,"int":17,"race":"人类","mud_age":3195,"jingli":0,"name":"星月之恋","dex":27,"eff_jing":100,"spi":13,"potential":28,"food":226,"channels":({"chat","rumor","music","dealer","party","master","banghui","wllz","frds","tt",}),"weiwang":0,"pighead":0,"actions":,"id":"lyrone","default_actions":,"VKS":2,"jing":100,"gender":"男性","change":1,"combat_exp":1,"max_jing":100,"bellicosity":0,"neili":0,"birthday":1587344373,"age":14,])
+autoload ({})
