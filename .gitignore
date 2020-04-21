@@ -1,4 +1,5 @@
 *.[bo]
-/backup
-/binaries
-/log
+backup/
+binaries/
+log/
+iduser

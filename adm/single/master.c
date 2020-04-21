@@ -1,8 +1,8 @@
 // master.c
 // Design By robert 蝴蝶君 robert_st@sian.com
 
-#pragma optimize
-#pragma save_binary
+//#pragma optimize
+//#pragma save_binary
 #include <config.h>
 #include <localtime.h>
 private void create()
@@ -65,7 +65,7 @@ private void crash(string error, object command_giver, object current_object)
 		log_file("static/CRASHES",sprintf( "this_object: %O\n", current_object));
 }
 
-static string *update_file(string file)
+protected string *update_file(string file)
 {
 	string *list;
 	string str;
@@ -82,14 +82,14 @@ static string *update_file(string file)
 	}
 	return list;
 }
-static string *epilog(int load_empty)
+protected string *epilog(int load_empty)
 {
 	string *items;
 
 	items = update_file(CONFIG_DIR + "preload");
 	return items;
 }
-static void preload(string file)
+protected void preload(string file)
 {
 	int t1;
 	string err;
@@ -103,7 +103,7 @@ static void preload(string file)
 		write(".... Done.\n");
 
 }
-static void log_error(string file, string message)
+protected void log_error(string file, string message)
 {
 	string name, home;
 
@@ -117,7 +117,7 @@ static void log_error(string file, string message)
 
 	efun::write_file(home + "log", message);
 }
-private int save_ed_setup(object who, int code)
+protected int save_ed_setup(object who, int code)
 {
 	string file;
 
@@ -146,27 +146,27 @@ void destruct_env_of(object ob)
 	tell_object(ob, "你所存在的空间被毁灭了。\n");
 	ob->move(VOID_OB);
 }
-static string make_path_absolute(string file)
+protected string make_path_absolute(string file)
 {
 	file = resolve_path((string)this_player()->query("cwd"), file);
 	return file;
 }
-static string get_save_file_name(string fname)
+protected string get_save_file_name(string fname)
 {
 	return fname + "." + time();
 }
 
-static string get_root_uid()
+protected string get_root_uid()
 {
 	return ROOT_UID;
 }
 
-static string get_bb_uid()
+protected string get_bb_uid()
 {
 	return BACKBONE_UID;
 }
 
-static string creator_file(string str)
+protected string creator_file(string str)
 {
 	return (string)call_other(SIMUL_EFUN_OB, "creator_file", str);
 }
@@ -231,43 +231,43 @@ int valid_override( string file, string name )
 	//  may also wish to protect destruct, shutdown, snoop, and exec.
 	return 1;
 }
-static int valid_seteuid( object ob, string str )
+protected int valid_seteuid( object ob, string str )
 {
 	return (int)SECURITY_D->valid_seteuid( ob, str );
 }
-static int valid_socket( object eff_user, string fun, mixed *info )
+protected int valid_socket( object eff_user, string fun, mixed *info )
 {
 	return 1;
 }
-static int valid_asm( string file )
+protected int valid_asm( string file )
 {
 	return 1;
 }
-static int valid_save_binary( string filename )
+protected int valid_save_binary( string filename )
 {
 	return 1;
 }
-static int valid_compile_to_c( string file )
+protected int valid_compile_to_c( string file )
 {
 	return 1;
 }
-static int direct_run_binary( string file )
+protected int direct_run_binary( string file )
 {
 	return 1;
 }
-static int valid_hide( object who )
+protected int valid_hide( object who )
 {
 	return 1;
 }
-static int valid_object( object ob )
+protected int valid_object( object ob )
 {
 	return (!clonep(ob)) || inherits(F_MOVE, ob);
 }
-static int valid_link( string original, string reference )
+protected int valid_link( string original, string reference )
 {
 	return 0;
 }
-static int valid_write( string file, mixed user, string func )
+protected int valid_write( string file, mixed user, string func )
 {
 	object ob;
 
@@ -276,7 +276,7 @@ static int valid_write( string file, mixed user, string func )
 
 	return 0;
 }
-static int valid_read( string file, mixed user, string func )
+protected int valid_read( string file, mixed user, string func )
 {
 	object ob;
 	if(ob = find_object(SECURITY_D) )

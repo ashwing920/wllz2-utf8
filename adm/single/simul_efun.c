@@ -1,7 +1,7 @@
-// simul_efun.c
+/// simul_efun.c
 
-#pragma optimize
-#pragma save_binary
+//#pragma optimize
+//#pragma save_binary
 
 #include "/adm/simul_efun/info.c"
 #include "/adm/simul_efun/ansi.c"
