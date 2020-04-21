@@ -1,2 +1,4 @@
 *.[bo]
 /backup
+/binaries
+/log

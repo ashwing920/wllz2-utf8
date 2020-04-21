@@ -1,8 +1,0 @@
-#/d/center/npc/butcher.c
-dbase (["qi":214,"per":14,"env":(["wimpy":30,]),"shen":0,"str":30,"title":"屠户","jiali":0,"kar":30,"cor":12,"startroom":"/d/center/shambles","shen_type":0,"con":19,"water":400,"eff_qi":214,"long":"他是屠夫猪肉荣，一个满脸大胡子和横肉的家伙。","max_qi":214,"vendor_goods":(["/d/center/npc/obj/ox_head":20,"/d/center/npc/obj/pig_head":20,]),"int":21,"race":"人类","dex":13,"name":"猪肉荣","jingli":0,"food":400,"eff_jing":195,"spi":13,"pighead":0,"id":"zhurou rong","actions":,"default_actions":,"jing":195,"gender":"男性","combat_exp":54995,"max_jing":195,"attitude":"friendly","neili":0,"max_neili":0,"age":35,])
-skills (["dodge":40,"parry":40,"unarmed":40,])
-autoload ({"/clone/money/coin:5","/clone/money/silver:10",})
-SAVE_NAME "butcher"
-price_ratio 10
-minimum_bid 10000
-close_time 1587290273

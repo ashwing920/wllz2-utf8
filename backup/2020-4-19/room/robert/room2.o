@@ -1,3 +1,0 @@
-#/data/room/robert/room2.c
-dbase (["objects":(["/d/room/npc/jiading":1,]),"exits":(["south":"/data/room/robert/room1","east":"/data/room/robert/room5","west":"/data/room/robert/room4",]),"no_clean_up":0,"playerhouse":1,"owner":"欧阳娴","private_room":1,])
-autoload ({})

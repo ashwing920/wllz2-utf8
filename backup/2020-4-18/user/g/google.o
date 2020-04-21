@@ -1,7 +1,0 @@
-#/clone/user/user.c
-alias (["yj":"exert regenerate","yq":"exert recover",])
-dbase (["qi":0,"per":22,"class":"scholar","env":(["prompt":"time","show_news":1,"brief":1,"wimpy":60,]),"register_time":1587128506,"shen":0,"str":30,"learned_points":146800,"title":"桃花岛第二代弟子","board_last_read":(["news_b":1586688516,]),"kar":17,"cor":24,"shen_type":0,"con":24,"change2":1,"water":0,"change1":1,"eff_qi":100,"max_qi":100,"family":(["title":"弟子","privs":0,"enter_time":1587131878,"generation":2,"master_name":"黄药师","family_name":"桃花岛","master_id":"huang yaoshi",]),"registered":1,"login_online":1,"int":22,"race":"人类","mud_age":705445,"jingli":0,"name":"谷歌","dex":15,"eff_jing":10000,"spi":21,"potential":3000100,"food":0,"channels":({"chat","rumor","music","dealer","party","master","banghui","wllz","frds","tt",}),"pighead":0,"actions":,"id":"google","default_actions":,"jing":0,"gender":"男性","change":1,"combat_exp":3000000,"max_jing":10000,"neili":0,"birthday":1587128506,"max_neili":10000,"age":22,])
-skills (["bibo-shengong":300,"xuanfeng-leg":295,"sword":311,"literate":800,"blade":311,"force":311,"throwing":311,"leg":311,"hand":311,"strike":311,"cuff":311,"buddhism":103,"staff":311,"dodge":311,"parry":311,"whip":311,"unarmed":311,])
-learned (["force":1423,"bibo-shengong":3667,"xuanfeng-leg":13085,"buddhism":7369,])
-skill_map (["force":"bibo-shengong","parry":"xuanfeng-leg",])
-autoload ({"/clone/money/silver:70","/clone/money/gold:8","/clone/money/thousand-cash:99",})

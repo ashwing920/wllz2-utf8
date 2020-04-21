@@ -1,7 +1,0 @@
-#/d/center/npc/seller-zbd.c
-dbase (["qi":160,"per":15,"env":(["wimpy":30,]),"shen":0,"nickname":"[1;35m唯利是图[2;37;0m","str":28,"jiali":0,"kar":10,"cor":10,"startroom":"/d/center/zhubaodian","shen_type":0,"con":10,"water":380,"eff_qi":160,"long":"他就是珠宝店老板。非头大耳，一脸奸笑。","max_qi":160,"vendor_goods":(["/clone/obj/jade4":1,"/clone/obj/jade3":1,"/clone/obj/jade2":1,"/clone/obj/jade1":1,]),"int":11,"race":"人类","dex":26,"name":"珠宝店老板","jingli":0,"food":380,"eff_jing":190,"spi":14,"pighead":0,"id":"seller","actions":,"default_actions":,"jing":190,"gender":"男性","combat_exp":21146,"max_jing":190,"attitude":"friendly","neili":0,"rank_info":(["respect":"老板",]),"max_neili":0,"age":36,])
-autoload ({"/clone/money/silver:10",})
-SAVE_NAME "seller-zbd"
-price_ratio 10
-minimum_bid 10000
-close_time 1587291363

@@ -1,3 +1,0 @@
-#/clone/user/user.c
-dbase (["qi":100,"per":20,"env":(["prompt":"time","show_news":1,"wimpy":60,]),"register_time":1587116026,"shen":0,"str":21,"board_last_read":(["news_b":1586688516,]),"title":"平民百姓","kar":17,"cor":19,"shen_type":0,"change2":1,"con":20,"change1":1,"water":191,"eff_qi":100,"max_qi":100,"registered":1,"login_online":3,"int":18,"race":"人类","mud_age":23834,"jingli":0,"name":"东京","dex":25,"eff_jing":100,"spi":12,"potential":100,"food":191,"channels":({"chat","rumor","music","dealer","party","master","banghui","wllz","frds","tt",}),"pighead":0,"actions":,"id":"avhot","default_actions":,"jing":100,"gender":"男性","change":1,"combat_exp":1,"max_jing":100,"cwf":"/d/center/buyefang/main-2f.c","birthday":1587116026,"age":14,])
-autoload ({})

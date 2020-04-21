@@ -1,3 +1,0 @@
-#/data/room/xiuxian/room3.c
-dbase (["objects":(["/d/room/npc/yahuan":1,]),"exits":(["east":"/data/room/xiuxian/room1",]),"no_clean_up":0,"playerhouse":1,"owner":"宗姑","private_room":1,])
-autoload ({})

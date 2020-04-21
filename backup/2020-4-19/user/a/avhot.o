@@ -1,4 +1,0 @@
-#/clone/user/user.c
-conditions ([])
-dbase (["qi":100,"kill_family":0,"thief":0,"per":19,"env":(["no_more":1,"show_news":1,"brief":0,"wimpy":60,]),"register_time":1587202269,"shen":0,"str":18,"score":0,"title":"平民百姓","board_last_read":(["news_b":1586688516,]),"kar":21,"cor":23,"all_job_times":13,"startroom":"/d/center/guandimiao","shen_type":0,"con":25,"change2":1,"water":280,"change1":1,"eff_qi":100,"max_qi":100,"registered":1,"login_online":8,"int":22,"race":"人类","mud_age":11308,"dex":27,"name":"东京热","jingli":0,"channels":({"chat","rumor","music","dealer","party","master","banghui","wllz","frds","tt",}),"food":280,"potential":90,"spi":16,"eff_jing":100,"weiwang":0,"pighead":0,"default_actions":,"id":"avhot","actions":,"VKS":1,"jing":100,"gender":"男性","combat_exp":65,"change":1,"max_jing":100,"bellicosity":0,"neili":0,"cwf":"/adm/daemons/logind.c","birthday":1587202269,"age":14,])
-autoload ({})

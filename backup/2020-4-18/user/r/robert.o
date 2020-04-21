@@ -1,8 +1,0 @@
-#/clone/user/user.c
-alias (["yj":"exert regenerate","yq":"exert recover","uu":"exert powerup","jj":"perform cuff.jin","suo":"perform hand.suo","fm":"perform cuff.fumo","xx":"perform sword.xiang",])
-dbase (["qi":1000,"per":25,"env":(["prompt":"time","show_news":1,"brief":2,"wimpy":60,"immortal":1,"no_more":1,"combat":1,]),"register_time":1587116566,"shen":2001251,"str":24,"score":51,"MKS":45,"title":"雪山寺第二代弟子","board_last_read":(["news_b":1586688516,]),"jiali":0,"kar":26,"cor":22,"shen_type":0,"con":24,"change2":1,"water":400,"change1":1,"eff_qi":1000,"max_qi":1000,"family":(["title":"九袋长老","privs":-1,"generation":18,"family_name":"丐帮",]),"registered":1,"login_online":8,"int":20,"race":"人类","mud_age":14931,"dex":20,"name":"霍洲","jingli":0,"channels":({"chat","rumor","music","dealer","party","master","banghui","wllz","frds","tt","sys",}),"food":400,"potential":1934,"spi":25,"eff_jing":7000,"weiwang":280,"pighead":0,"default_actions":,"id":"robert","actions":,"jing":7000,"gender":"男性","combat_exp":1013949,"change":1,"max_jing":7000,"bellicosity":320,"neili":1593,"cwf":"/d/city/npc/polan.c","birthday":1587116566,"cwd":"/d/city/npc/","max_neili":1000,"age":14,])
-skills (["huntian-qigong":211,"shexing-diaoshou":211,"training":211,"xiaoyaoyou":211,"blade":211,"force":211,"begging":211,"hand":211,"liuhe-daofa":211,"xianglong-zhang":211,"staff":211,"dodge":211,"parry":211,"unarmed":211,])
-learned (["force":23,"huntian-qigong":3,"shexing-diaoshou":62,])
-skill_map (["force":"huntian-qigong","hand":"shexing-diaoshou","dodge":"xiaoyaoyou","parry":"xianglong-zhang","unarmed":"xianglong-zhang",])
-skill_prepare ([])
-autoload ({"/clone/money/silver:10","/clone/money/coin:50","/clone/money/gold:4",})
