@@ -42,8 +42,9 @@ void create()
 	for(i=0;i<size;i++) {
 	if(sscanf(buf1[i],"%s %s",dir,name)==2) {
 		name=replace_string(name," ","");
-		if(strlen(dir)>2 && strlen(name)>2) {
+		if(strlen(dir)>1 && strlen(name)>1) {
 		maps+=([dir:name]);
+		//rite(sprintf("room:(%s) city:(%s)\n",dir,maps[dir]));
 			}
 		}
 	}
@@ -241,7 +242,6 @@ string query_city(object loc)
 {
 	string filename,filename1;
 	int len;
-
 	filename=file_name(loc);
 	len=strlen(filename);
 	if(len<2) return "???";

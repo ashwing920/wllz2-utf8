@@ -5,9 +5,22 @@
 //#pragma save_binary
 #include <config.h>
 #include <localtime.h>
+nosave int DEBUG = 1;
+
 private void create()
 {
 	write("master：加载成功！\n");
+}
+mixed valid_database(object caller, string func, mixed *info)
+{
+    if(DEBUG){
+        debug_message("[MASTER_OB]->valid_database():");
+        debug_message("([caller : " + file_name(caller) + ", func : " + func + "])");
+    }
+    if (func == "connect")
+        return "secret"; // mysql数据库密码
+    else
+        return 1;
 }
 private object connect(int port)
 {

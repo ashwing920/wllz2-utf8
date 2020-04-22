@@ -5,6 +5,10 @@
 #define static nosave
 #endif
 
+
+#define DB_SAVE         1
+
+
 #define SAVE_EXTENSION	__SAVE_EXTENSION__
 
 #define QUESTH_D(x)  ("/quest/qhlist" + x)
@@ -26,6 +30,8 @@
 //new daemons
 #define SCHEDULE_D              "/adm/daemons/scheduled"
 #define FUBEN_D                 "/adm/daemons/fubend"
+#define SYSTEM_D				"/adm/daemons/systemd"
+#define NUMBER_D                "/adm/daemons/numberd"
 // Daemons
 #define ALIAS_D                 "/adm/daemons/aliasd"
 #define ARMOR_D                 "/adm/daemons/armord"
