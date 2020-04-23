@@ -76,7 +76,10 @@ void heart_beat()
 	}
 	if(userp(me) && !interactive(me) && me->query("biguan")){
 		if(me->query_temp("breakup"))
+		{
 			me->breakup();
+			if (!me) return;
+		}
 		else if(me->query_temp("closed"))
 			me->closed();
 	}
