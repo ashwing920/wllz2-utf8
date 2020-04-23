@@ -25,5 +25,6 @@ LONG
 		"east" : __DIR__"room1",
 	]));
 	set("owner", "ROOM_OWNER");
+	set("room_owner_id","ROOM_OWNER_ID");
 	setup();
 }

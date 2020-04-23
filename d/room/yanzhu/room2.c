@@ -14,7 +14,12 @@ LONG
 );
 //**	set("sleep_room",1);
 	set("playerhouse",1);
+	set("owner", "ROOM_OWNER");
+	set("room_owner_id","ROOM_OWNER_ID");
 /**/	set("default_long", "这是一间不大的屋子，透过精致的花木格窗户依稀可以看到院子的景观。屋角房着一张床，看上去非常舒适。");
+    set("objects", ([
+            "/adm/npc/obj/xiang" : 1,
+    ]));
 	set("exits", ([
 		"east" : __DIR__"room1", //客厅
 	]));

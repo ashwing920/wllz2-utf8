@@ -35,6 +35,7 @@
 #define SYSTEM_D				"/adm/daemons/systemd"
 #define NUMBER_D                "/adm/daemons/numberd"
 #define DATABASE_D              "/adm/daemons/databased"
+#define F_SILENTDEST            "/feature/silentdest.c"
 // Daemons
 #define ALIAS_D                 "/adm/daemons/aliasd"
 #define ARMOR_D                 "/adm/daemons/armord"

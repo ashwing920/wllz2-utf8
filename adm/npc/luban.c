@@ -1539,7 +1539,7 @@ void record_contract(object me)
 	set_form(id, "position", me->query_temp("contract/luban/position"));
 	set_form(id, "value", me->query_temp("contract/luban/value"));
 	set_form(id, "time", time());
-	set_form(id, "status", "申请");
+	set_form(id, "status", "同意");
 	set_form(id, "wizard", "无");
 	set_form(id, "memo", "无");
 
@@ -1952,6 +1952,7 @@ void create_room(object me)
 	string room_name;	// 房屋名字
 	string room_id;		// 房屋ID
 	string room_owner;	// 房屋的主人
+	string room_owner_id;   //房屋主人id
 	string room_key;	// 房屋的钥匙
 	string position;	// 建造房屋的地点(路径名)
 	string position_short;	// 建造房屋的地点的中文名字
@@ -2005,7 +2006,7 @@ void create_room(object me)
 	room_id = query(ids + "id");
 	position = query(ids + "position");
 	names = keys(filesp);
-
+	room_owner_id=player_id;
 	room_owner = query(ids + "player");
 	room_key = "key of " + player_id;
 
@@ -2080,12 +2081,12 @@ void create_room(object me)
 
 			// 替换语句中的ROOM_KEY, OWNER, position
 			content[k] = replace_string(content[k], "ROOM_KEY", room_key);
+			content[k] = replace_string(content[k], "ROOM_OWNER_ID", room_owner_id);
 			content[k] = replace_string(content[k], "ROOM_OWNER", room_owner);
 			content[k] = replace_string(content[k], "ROOM_NAME", room_name);
 			content[k] = replace_string(content[k], "ROOM_ID", room_id);
 			content[k] = replace_string(content[k], "ROOM_POSITION", position_short);
 			content[k] = replace_string(content[k], "/d/room/xiaoyuan", position);
-
 			// 添加该语句
 			if (content[k] == "")
 				enter_receive ++;

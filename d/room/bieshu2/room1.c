@@ -28,6 +28,7 @@ LONG
 	]));
 	set("key", "ROOM_KEY");
 	set("owner", "ROOM_OWNER");
+	set("room_owner_id","ROOM_OWNER_ID");
 	create_door("south", "木门", "north", DOOR_CLOSED);
 	setup();
 }

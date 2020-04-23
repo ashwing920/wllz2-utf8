@@ -13,9 +13,13 @@ LONG
 );
 	set("playerhouse",1);
 	set("sleep_room",1);
+    set("objects", ([
+            "/adm/npc/obj/xiang" : 1,
+    ]));
 	set("exits", ([
 		"east" : __DIR__"room2",
 	]));
 	set("owner", "东京热");
+	set("room_owner_id","avhot");
 	setup();
 }

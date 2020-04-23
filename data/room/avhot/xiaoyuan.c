@@ -19,6 +19,7 @@ LONG
 
 	set("key", "key of avhot");
 	set("owner", "东京热");
+	set("room_owner_id","avhot");
 	set("exits", ([
 		"out" : "/d/room/road_e",
 		"north" : __DIR__"room1",

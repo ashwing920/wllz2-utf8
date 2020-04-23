@@ -23,6 +23,7 @@ LONG
 /**/	set("default_long", "这是一所十分别致的院子，院中种满了各式各样的名贵花草，争先斗艳，十分美丽。院子旁边有一口井，井水清澈见底，十分凉爽。院子虽然不是很大，但打扫的十分干净。");
 	set("key", "ROOM_KEY");
 	set("owner", "ROOM_OWNER");
+	set("room_owner_id","ROOM_OWNER_ID");
 	set("exits", ([
 		"out" : "/d/room/xiaoyuan",
 		"north" : __DIR__"room1",

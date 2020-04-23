@@ -19,5 +19,6 @@ LONG
 		"east" : __DIR__"room1",
 	]));
 	set("owner", "东京热");
+	set("room_owner_id","avhot");
 	setup();
 }
