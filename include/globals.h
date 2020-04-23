@@ -6,8 +6,10 @@
 #endif
 
 
-#define DB_SAVE         1
-
+#define DB_SAVE      
+#define TX_SAVE		1
+#define DB_TYPE		"sqlite"
+#define DB_STR(x)    "'" + replace_string(x, "'", "''") + "'"
 
 #define SAVE_EXTENSION	__SAVE_EXTENSION__
 
@@ -32,6 +34,7 @@
 #define FUBEN_D                 "/adm/daemons/fubend"
 #define SYSTEM_D				"/adm/daemons/systemd"
 #define NUMBER_D                "/adm/daemons/numberd"
+#define DATABASE_D              "/adm/daemons/databased"
 // Daemons
 #define ALIAS_D                 "/adm/daemons/aliasd"
 #define ARMOR_D                 "/adm/daemons/armord"

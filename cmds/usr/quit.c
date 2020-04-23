@@ -98,6 +98,9 @@ int main(object me, string arg)
 			(int)me->query("potential") - (int)me->query("learned_points")));
 
 	}
+#ifdef DB_SAVE
+    DATABASE_D->db_set_player(query("id", me),"online",0);
+#endif
 	TOPTEN_D->topten_checkplayer(me);
 	me->save();
 	destruct(me);

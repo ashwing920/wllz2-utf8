@@ -3,7 +3,20 @@
 #include <condition.h>
 
 mapping conditions;
+mapping query_CONDITION()
+{
+        mapping m=([]);
+        m["conditions"] = conditions;
+        return m;
+}
 
+int set_CONDITION(mapping m)
+{
+        if( !mapp(m) )
+                return 0;
+        conditions = m["conditions"];
+        return 1;
+}
 nomask int update_condition()
 {
 	mixed *cnd, err;

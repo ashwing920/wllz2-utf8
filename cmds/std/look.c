@@ -158,7 +158,7 @@ int look_room(object me, object env,int brief)
 			if(brief)
 				str += "这里唯一的出口是『" + HIW + dirs[0] + NOR + "』。\n";
 			else
-				str += "    这里唯一的出口是 " + BOLD + dirs[0] + NOR + "。\n";
+				str += "    这里唯一的出口是 " + BOLD +dirs[0]+ NOR + "。\n";
 		else
 			if(brief)
 				str += sprintf("这里明显的出口是『" + HIW + "%s" + NOR + "』和『" + HIW + "%s" + NOR + "』。\n",

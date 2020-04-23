@@ -8,8 +8,30 @@ mapping learned;
 mapping skill_map;
 mapping skill_prepare;
 
+mapping query_skillc() { return skills; }
 mapping query_skills() { return skills; }
 mapping query_learned() { return learned; }
+
+mapping query_SKILL()
+{
+        mapping data = ([]);
+        data["skills"] = skills;
+        data["learned"] = learned;
+        data["skill_map"] = skill_map;
+        data["skill_prepare"] = skill_prepare;
+        return data;
+}
+
+int set_SKILL(mapping data)
+{
+        if( !mapp(data) ) return 0;
+        skills = data["skills"];
+		//write("begin set skill"+skills["force"]+"\n");
+        learned = data["learned"];
+        skill_map = data["skill_map"];
+        skill_prepare = data["skill_prepare"];
+        return 1;
+}
 
 void set_skill(string skill, int val)
 {

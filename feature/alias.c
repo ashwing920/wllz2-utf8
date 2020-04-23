@@ -93,3 +93,9 @@ mapping query_all_alias()
 {
 	return alias;
 }
+int set_ALIAS(mapping data)
+{
+        if( !mapp(data) ) return 0;
+        alias = data;
+        return 1;
+}

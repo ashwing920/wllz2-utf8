@@ -8,13 +8,14 @@ inherit CHARACTER;
 inherit F_AUTOLOAD;
 inherit F_SAVE;
 
+nosave int user_cracked = 0;            // RESTORE 时检查数据并设置该标志
 static int user_say = 0;                // 一定时间以内玩家做的say-action
 static int user_command = 0;            // 一定时间以内玩家发送的命令
 static int at_time = 0;                 // 在什么时间计算的
 static int ban_to = 0;                  // 在什么时间解禁玩家
 static int attach_flag = 0;             // 是否正在和系统联络
 static int idtime = 0;
-
+varargs string calc_sec_id(int raw);
 #define MAX_COMMAND_ONE_SECTION         40
 #define MAX_SAY_ONE_SECTION             5
 #define BAN_SAY_PERIOD                  60
@@ -56,12 +57,38 @@ string query_save_file()
 
 int save()
 {
-	int res;
+        int res;
 
-	save_autoload();
-	res = ::save();
-	clean_up_autoload();            // To save memory
-	return res;
+        /*
+        if( user_cracked )
+                // 数据不完整，不能保存
+                return 1;
+        */
+
+        if( query_temp("user_setup") ) {
+                save_autoload();
+                set("sec_id", calc_sec_id());   // save sec_id
+#ifdef DB_SAVE
+                res = DATABASE_D->db_save_all(this_object());
+                if( TX_SAVE )
+                        res = ::save();
+#else
+                res = ::save();
+#endif
+                clean_up_autoload();            // To save memory
+        } else {
+                set("sec_id", calc_sec_id());   // save sec_id
+				save_autoload();
+#ifdef DB_SAVE
+                res = DATABASE_D->db_save_all(this_object());
+                if( TX_SAVE )
+                        res = ::save();
+#else
+                res = ::save();
+#endif
+				clean_up_autoload(); 
+        }
+        return res;
 }
 
 // This function updates player's age, called by heart_beat()
@@ -155,6 +182,52 @@ void setup()
 
 	::setup();
 	restore_autoload();
+}
+int restore()
+{
+        int res;
+        string sec_id;
+
+#ifdef DB_SAVE
+        res = DATABASE_D->db_restore_all(this_object());
+		write(sprintf("connect:(%d)",res));
+        if( (int)query_temp("restore_mysql") )
+                 res = ::restore();
+
+        // if( res && ! DATABASE_D->crc_status())
+        if( res )
+#else
+        res = ::restore();
+
+        if( res )
+#endif
+        {
+                /*
+                if( stringp(sec_id = query("sec_id")) ) {
+                        if( crypt(calc_sec_id(1), sec_id) != sec_id ) {
+                                // 数据不完整
+                                log_file("static/user",
+                                         sprintf("%s %s's data my be corrupt.\n",
+                                                 log_time(), getuid()));
+                                user_cracked = 1;
+                                return 0;
+                        }
+                } else {
+                        log_file("static/user",
+                                 sprintf("%s %s lost assure key.\n",
+                                         log_time(), getuid()));
+                        user_cracked = 1;
+                        return 0;
+                }
+                */
+
+                // 数据完整
+                user_cracked = 0;
+        }
+        if( !query("on_time") )
+                set("on_time", query("mud_age"));
+
+        return res;
 }
 private void user_dump(int type)
 {
@@ -344,4 +417,58 @@ int max_jingli()
 	}
 	if(query("breakup")) max_jingli += (int)ob->query("spi") * 100;
 	return max_jingli;
+}
+string calc_sec_id(int raw)
+{
+        mapping my;
+        string *list;
+        string key;
+        int sum;
+        string str;
+        int i;
+
+        sum = 0;
+
+        // 累计所有的数据
+        if( mapp(my = query_entire_dbase()) ) {
+                foreach (key in keys(my) - ({ "sec_id" })) {
+                        sum += sizeof(key);
+                        if( intp(my[key]) )
+                                sum += my[key];
+                        else
+                                sum += sizeof(my[key]);
+                }
+        }
+
+        // 累计所有的武功技能
+        // if( mapp(my = query_skills()))
+        if( mapp(my = query_skillc()) ) {
+                foreach (key in keys(my) ) {
+                        sum += sizeof(key);
+                        if( intp(my[key]) )
+                                sum += my[key];
+                        else
+                                sum += sizeof(my[key]);
+                }
+        }
+
+        // 因动态装备在载入前后涉及到字符转换的问题，累计结果会不一样
+        // 故取消累计所有携带的物品
+        /*
+        // 累计所有携带的物品
+        if( arrayp(list = query_autoload_info()) ) {
+                foreach (key in list) {
+                        sum += sizeof(key);
+                        if( stringp(key) )
+                                for (i = 0; i < strlen(key); i++) sum += key[i];
+                }
+        }
+        */
+
+        // 转化成字符串
+        str = sprintf("%d", sum);
+        str[0] = (sum % 26) + 'a';
+
+        if( !raw ) str = crypt(str, 0);
+        return str;
 }

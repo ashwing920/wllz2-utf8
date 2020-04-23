@@ -59,3 +59,42 @@ nomask mixed set(string prop, mixed data)
         if( geteuid(previous_object()) != ROOT_UID ) return 0;
         return ::set(prop, data);
 }
+int save()
+{
+        int res;
+
+#ifdef DB_SAVE
+        res = DATABASE_D->db_set_player(query("id"), "login_dbase",
+                save_variable(query_entire_dbase()));
+#endif
+        if( TX_SAVE )
+                res = ::save();
+
+        return res;
+}
+
+int restore()
+{
+        int res = 0;
+
+#ifdef DB_SAVE
+        mapping dbase;
+        string  str;
+
+        str = DATABASE_D->db_query_player(query("id"), "login_dbase");
+        if( str && stringp(str) ) {
+                dbase = restore_variable(str);
+                if( mapp(dbase) ) {
+                        set_dbase(dbase);
+                        res = 1;
+                }
+        }
+#else
+        if( TX_SAVE )
+                res = ::restore();
+#endif
+        if( (int)query_temp("restore_mysql") )
+                res = ::restore();
+
+        return res;
+}

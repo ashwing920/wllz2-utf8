@@ -104,7 +104,11 @@ varargs void remove(string euid)
 	if( !previous_object()
 	||  base_name(previous_object()) != SIMUL_EFUN_OB )
 		error("move: remove() can only be called by destruct() simul efun.\n");
-
+       me = this_object();
+#ifdef DB_SAVE
+        if( userp(me) && sizeof(me->query("id")) )
+                DATABASE_D->db_set_player(me->query("id"), "online", 0);
+#endif
 	if( this_object()->query("equipped")) {
 		if((string)this_object()->query("equipped") == "horse"
 		&& this_player()->query_temp("is_riding"))

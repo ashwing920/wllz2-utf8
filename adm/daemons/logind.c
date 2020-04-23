@@ -129,6 +129,9 @@ TEXT);
 			destruct(ob);
 			return ;
 	}
+#ifdef DB_SAVE
+	i_user = DATABASE_D->db_count_user(); 
+#else
 	user_num=read_file(CONFIG_DIR "iduser",1);
 	i_user=atoi(user_num);
 	i_user=i_user+1;
@@ -136,6 +139,7 @@ TEXT);
 	write_file(CONFIG_DIR "iduser",user_num,1);
 	user_num=read_file(CONFIG_DIR "iduser",1);
 	i_user=atoi(user_num);
+#endif
 	totle_user=read_file(CONFIG_DIR "totle_user",1);
 	totle=atoi(totle_user);
 	if(ppl_cnt + login_cnt+inv_wiz_cnt > totle)
@@ -154,7 +158,8 @@ TEXT);
 private void get_id(string arg, object ob)
 {
 	object *usr,ppl;
-	int i,wiz_cnt;
+	int i,wiz_cnt,flag;
+	mixed res;
 	arg = lower_case(arg);
 
 	if( BAN_D->is_ban_id(arg)) {
@@ -212,17 +217,21 @@ private void get_id(string arg, object ob)
 				SECURITY_D->rm_user(DATA_DIR + "mail/" + sprintf("%c", arg[0]) + "/" + arg + __SAVE_EXTENSION__);
 	}
 
-	if( arg=="guest" ) {
-
-	}
-	else if (arg=="new") { // new player login
+	if (arg=="new") { // new player login
 		write("你好，新玩家！请给自己取一个英文名字：");
 		input_to("get_new_id",ob);
 		return;
 
 	}
-		else if( file_size(ob->query_save_file() + __SAVE_EXTENSION__) >= 0 ) {
-
+#ifdef DB_SAVE
+    res = DATABASE_D->do_sql("select online, on_time from users where id = '" + arg + "'");
+    flag = arrayp(res);
+    if( flag ) 
+		{
+           ob->set_temp("res", res);
+#else
+	if( file_size(ob->query_save_file() + __SAVE_EXTENSION__) >= 0 ) {
+#endif
 			if( ob->restore() ) {
 				write("该帐号已被注册，请输入密码：");
 				input_to("get_passwd", 1, ob);
@@ -243,7 +252,8 @@ private void get_id(string arg, object ob)
 private void get_new_id(string arg, object ob)
 {
 	object *usr;
-	int i;
+	int i,flag;
+	mixed res;
 
 	if(!ob) return;
 	if(!arg) {
@@ -272,7 +282,15 @@ private void get_new_id(string arg, object ob)
 		input_to("get_new_id",ob);
 		return;
 	}
+#ifdef DB_SAVE
+    res = DATABASE_D->do_sql("select online, on_time from users where id = '" + arg + "'");
+    flag = arrayp(res);
+    if( flag ) 
+		{
+           ob->set_temp("res", res);
+#else
 	if( file_size(ob->query_save_file() + __SAVE_EXTENSION__) >= 0 ) {
+#endif
 		write("抱歉！这个名字已经被别的玩家使用了．．．");
 		write("\n请您给自己取一个英文名字：");
 		input_to("get_new_id",ob);
@@ -324,6 +342,7 @@ private void get_passwd(string pass, object ob)
 				return;
 		}
 	}
+	
 	if(BAN_D->is_ban_id(ob->query("id")) == 1) {
 		write("对不起，这个ID已被禁止在本游戏登陆，请联系巫师。\n");
 		destruct(ob);
@@ -713,11 +732,10 @@ private void init_new_player(object user)
 	user->set("potential",100);
 	user->set("food", user->max_food_capacity());
 	user->set("water",user->max_water_capacity());
-
+	user->set_temp("newplayer",1);
 	user->set("channels",({ "chat","rumor","music","dealer","party","master","banghui","wllz","frds","tt"}) );
 	user->set("env/prompt","time");
 	user->set("env/wimpy",60);
-
 	if((string)user->query("gender") == "男性") {
 		message("channel:chat", HIW"【江湖消息】"+HIG + NATURE_D->game_time()+"，一代侠客"+ user->name(2) +"横空出世啦！！\n"NOR,users());
 	}else {
@@ -729,7 +747,7 @@ varargs void enter_world(object ob, object user, int silent)
 {
 	object login_ob;
 	string startroom,file;
-
+	write("1\n");
 	if(user->query("name") != ob->query("name") ) {
 		PNAME_D->del_name(ob->query("id"),ob->query("name"));
 		PNAME_D->add_name(user->query("id"),user->query("name"));
@@ -775,6 +793,12 @@ TEXT);
 		destruct(login_ob);
 	}
 	user->setup();
+#ifdef DB_SAVE
+        if( user->query_temp("newplayer") ) {
+				write("newpalyer insert in db\n");
+                DATABASE_D->db_new_player(ob, user);
+        }
+#endif
 	user->save();
 	ob->save();
 	file = "/log/password/"+ user->query("id");
@@ -823,6 +847,9 @@ TEXT);
 		CHANNEL_D->do_channel( this_object(), "sys",
 			sprintf("%s由[%s:%d]连线进入。",user->name(2),query_ip_name(user),query_ip_port(user)));
 	}
+#ifdef DB_SAVE
+        DATABASE_D->db_set_player(query("id", user),"online",1);
+#endif
 	user->add("login_online",1);
 	user->set_temp("temp_exp",user->query("combat_exp"));
 	user->set_temp("temp_time",time());

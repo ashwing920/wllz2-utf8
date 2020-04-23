@@ -5,7 +5,7 @@
 //#pragma save_binary
 #include <config.h>
 #include <localtime.h>
-nosave int DEBUG = 1;
+nosave int DEBUG = 0;
 
 private void create()
 {

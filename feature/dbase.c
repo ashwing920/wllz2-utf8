@@ -157,3 +157,40 @@ mapping query_entire_temp_dbase()
 {
         return tmp_dbase;
 }
+nomask void set_dbase(mapping data)
+{
+        // if( !is_root(previous_object()) )
+        //      return;
+
+        if( !mapp(data) )
+                return;
+
+        dbase = data;
+}
+
+nomask void set_temp_dbase(mapping data)
+{
+        // if( !is_root(previous_object()) )
+        //      return;
+
+        if( !mapp(data) )
+                return;
+
+        tmp_dbase = data;
+}
+
+nomask void delete_all_dbase()
+{
+        // if( !is_root(previous_object()) )
+        //      return;
+
+        dbase = ([]);
+}
+
+nomask void delete_all_temp_dbase()
+{
+        // if( !is_root(previous_object()) )
+        //      return;
+
+        tmp_dbase = ([]);
+}

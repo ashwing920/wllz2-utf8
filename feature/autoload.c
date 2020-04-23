@@ -49,3 +49,12 @@ void restore_autoload()
 	}
 	clean_up_autoload();
 }
+string *query_autoload_info()
+{
+        return autoload;
+}
+
+void set_autoload_info(string *data)
+{
+        autoload = data;
+}
