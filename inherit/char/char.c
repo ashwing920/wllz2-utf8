@@ -74,7 +74,7 @@ void heart_beat()
 		}
 		
 	}
-	if(userp(me) && !interactive(me) && me->query_temp("biguan")){
+	if(userp(me) && !interactive(me) && me->query("biguan")){
 		if(me->query_temp("breakup"))
 			me->breakup();
 		else if(me->query_temp("closed"))
@@ -205,7 +205,7 @@ varargs string short(int raw)
 
 	if(!interactive(me) && userp(me))
 	{
-		if(query_temp("biguan"))
+		if(query("biguan"))
 			return str += HIR " <闭关中>" NOR;
 		
 		else return str += HIG " <断线中>" NOR;

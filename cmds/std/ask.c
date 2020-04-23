@@ -16,6 +16,29 @@ private string *msg_dunno = ({
 	CYN"$n义正严词的说：“DON'T ASK ME！”\n"NOR,
 	CYN"$n漫不经心的说了一句：卡诺吉瓦雅马哈！\n"NOR,
 });
+string query_inquiry(object me, object ob)
+{
+        int i = 0;
+        mapping inq;
+        string str = "";
+        string *indexs;
+        
+        if( mapp(inq=ob->query("inquiry")) )
+        {
+                indexs = keys(inq);
+                for (i = 0; i < sizeof(indexs); i++)
+                {
+                        //str = indexs[i] + " " + str;
+                        str += HIY "第"+chinese_number(i+1)+"条："HIG+indexs[i]+"\n" NOR;
+                }
+                str = "有关于\n" + str + "\n这些事情，你若想知道的话可以问我！";
+                tell_room(environment(me), CYN + ob->name() + "在" + me->name() + "耳边小声地说了些话。\n" NOR, ({ me, ob }));
+                tell_object( me, GRN + ob->name() + "在你的耳边悄声说道：" + str + "\n" NOR);
+                return "\n";
+        }
+        tell_object( me, ob->name(1) + "对你说道：实在是对不起，我什么也不知道呀！\n");
+        return "\n";
+}
 int main(object me, string arg)
 {
 	string dest, topic,msg,callme;
@@ -25,8 +48,12 @@ int main(object me, string arg)
 
 	if(me->ban_say()) return 0;
 
-	if( !arg || sscanf(arg, "%s about %s", dest, topic)!=2 )
-		return notify_fail("你要问谁什么事？\n");
+    if (! arg)
+            return notify_fail("你要问谁什么事？\n");
+
+    if (sscanf(arg, "%s about %s", dest, topic) != 2 &&
+        sscanf(arg, "%s %s", dest, topic) != 2)
+            return notify_fail("你要问谁什么事？\n");
 
 	if( !objectp(ob = present(dest, environment(me))) )
 		return notify_fail("这里没有这个人。\n");
@@ -67,6 +94,9 @@ int main(object me, string arg)
 		}
 	} else
 		switch(topic){
+			case "all":
+				query_inquiry(me, ob);
+				break;
 			case "name":
 				message_vision(CYN"$N说道："+ RANK_D->query_self(ob)+"名曰："+ ob->name()+"，这位"+ callme+"还请多多指教！\n"NOR,ob);
 				break;
@@ -99,6 +129,7 @@ int main(object me, string arg)
 	}
 	return 1;
 }
+
 
 int help(object me)
 {

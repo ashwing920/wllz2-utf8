@@ -100,14 +100,12 @@ varargs int move(mixed dest, int silently)
 varargs void remove(string euid)
 {
 	object default_ob;
-
 	if( !previous_object()
 	||  base_name(previous_object()) != SIMUL_EFUN_OB )
 		error("move: remove() can only be called by destruct() simul efun.\n");
-       me = this_object();
 #ifdef DB_SAVE
-        if( userp(me) && sizeof(me->query("id")) )
-                DATABASE_D->db_set_player(me->query("id"), "online", 0);
+        if( userp(this_object()) && sizeof( this_object()->query("id")) )
+                DATABASE_D->db_set_player( this_object()->query("id"), "online", 0);
 #endif
 	if( this_object()->query("equipped")) {
 		if((string)this_object()->query("equipped") == "horse"

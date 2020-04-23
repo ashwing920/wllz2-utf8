@@ -328,7 +328,7 @@ mixed db_query_player(string id, string prop)
 
 int db_new_player(object ob, object user)
 {
-        int db,n;
+        int db,n,total;
         string sql;
         mixed ret;
         mapping my, myob;
@@ -360,10 +360,12 @@ int db_new_player(object ob, object user)
 
         // 不判断数据库里是否已经有该项记录
         // fee_time不在这里做修改，故不存储了
+		total = my["str"]+my["int"]+my["con"]+ my["dex"]+my["per"]+my["kar"]+my["cor"]+my["spi"];
 		if (DB_TYPE=="sqlite") 
 		{
-			sql = "insert into users (id,username,password,brithday,online,on_time,login_dbase,user_dbase) values ('" + my["id"] + "',"+ DB_STR(my["name"])+","+
+			sql = "insert into users (id,username,password,inborn,brithday,online,on_time,login_dbase,user_dbase) values ('" + my["id"] + "',"+ DB_STR(my["name"])+","+
                DB_STR(myob["password"]);
+			sql += ","+total;
 			sql += ",datetime('now','localtime'),1,0";
 			sql += "," + DB_STR(save_variable(myob));
 			sql += "," + DB_STR(save_variable(my))+")";
@@ -372,6 +374,7 @@ int db_new_player(object ob, object user)
         sql += "username = " + DB_STR(my["name"]) + ", password = " +
                DB_STR(myob["password"]) ;
         sql += ", birthday = now(), online = 1, on_time = 0";
+		sql += ", inborn = " + total;
         sql += ", login_dbase = " + DB_STR(save_variable(myob));
         sql += ", user_dbase = " + DB_STR(save_variable(my));
 		}

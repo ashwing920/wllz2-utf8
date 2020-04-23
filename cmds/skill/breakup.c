@@ -39,7 +39,8 @@ int main(object me, string arg)
 		link_ob->save();
 		destruct(link_ob);
 	}
-	me->set_temp("biguan",1);
+	me->set("breakuproom", base_name(environment(me)));
+	me->set("biguan",1);
 	me->set_temp("breakup",1);
 	if(me->query("env/idle")) me->delete("env/idle");
 	remove_interactive(me);

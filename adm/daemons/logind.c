@@ -371,7 +371,7 @@ private void get_passwd(string pass, object ob)
 			reconnect(ob, user);
 			return;
 		}
-		else if( user->query_temp("biguan")){
+		else if( user->query_temp("breakup")){
 			write("\n目前该人物正在闭关中，重新连线将会提前破关而出，确定吗(y/n)？");
 			input_to("confirm_relogin2", ob, user);
 			return;
@@ -746,7 +746,7 @@ private void init_new_player(object user)
 varargs void enter_world(object ob, object user, int silent)
 {
 	object login_ob;
-	string startroom,file;
+	string startroom,file,breakuproom;
 	write("1\n");
 	if(user->query("name") != ob->query("name") ) {
 		PNAME_D->del_name(ob->query("id"),ob->query("name"));
@@ -817,6 +817,17 @@ TEXT);
 			startroom = DEATH_ROOM;
 			user->move(DEATH_ROOM);
 		}
+		else if (user->query("biguan")) {
+			if (user->query("breakup")) {
+				user->delete("biguan");
+				user->delete("breakuproom");
+				user->delete("breakuptime");
+			} else {
+				breakuproom=user->query("breakuproom");
+				user->move(breakuproom);
+				user->force_me("breakup");
+			}
+		}
 		else if( user->query_condition("parsion")) {
 			startroom = "/d/xingbu/qiushi1";
 			user->move("/d/xingbu/qiushi1");
@@ -848,7 +859,7 @@ TEXT);
 			sprintf("%s由[%s:%d]连线进入。",user->name(2),query_ip_name(user),query_ip_port(user)));
 	}
 #ifdef DB_SAVE
-        DATABASE_D->db_set_player(query("id", user),"online",1);
+        DATABASE_D->db_set_player(user->query("id"),"online",1);
 #endif
 	user->add("login_online",1);
 	user->set_temp("temp_exp",user->query("combat_exp"));

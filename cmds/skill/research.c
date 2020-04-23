@@ -52,8 +52,8 @@ int main(object me, string arg)
 	if( !SKILL_D(skill)->valid_research() && my_skill < 200 )
 		return notify_fail("你的"+ to_chinese(skill)+"火候不够，无法自行研究。\n");
 
-	if( my_skill >= 800)
-		return notify_fail("你的"+ to_chinese(skill)+"已经进入高深莫测的境界，无法再进行研究了。\n");
+	//if( my_skill >= 800)
+	//	return notify_fail("你的"+ to_chinese(skill)+"已经进入高深莫测的境界，无法再进行研究了。\n");
 
 	jing_cost = 300 / (int)me->query("int");
 

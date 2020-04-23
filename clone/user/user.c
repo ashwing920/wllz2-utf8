@@ -123,16 +123,25 @@ void update_age()
 }
 void breakup()
 {
+	write("heartbeat2\n");
 	if(userp(this_object()) && query_temp("breakup")){
 		if((query("potential") - query("learned_points")) > 1){
 			add("learned_points",1);
-			add_temp("breakup_time",1);
-		}else command("quit");
-		if( random(300) == (query("con") + query("spi")) && query_temp("breakup_time") > 86400){
+			add("breakup_time",1);
+		}else {
+			delete("breakup_time");
+			delete("breakuproom");
+			delete("biguan");
+			command("quit");
+		};
+		if( random(300) == (query("con") + query("spi")) && query("breakup_time") > 86400){
 			set("breakup",1);
 			log_file("breakup",sprintf("[%s]%s(%s)打通任督二脉，破关而出。\n",ctime(time()),query("name"),query("id")));
 			CHANNEL_D->do_channel(find_object(MASTER_OB),"rumor",
 				sprintf("%s，%s终于打通任督二脉，破关而出！",NATURE_D->game_time(),name(2)));
+			delete("breakup_time");
+			delete("breakuproom");
+			delete("biguan");
 			save();
 			command("quit");
 		}
@@ -291,10 +300,12 @@ void reconnect()
 		remove_call_out("user_dump");
 		tell_object(this_object(), "重新连线完毕。\n");
 	}
-	else if(query_temp("biguan")){
+	else if(query("biguan")){
 		if(query_temp("breakup")){
 			delete_temp("breakup");
-			delete("breakup");
+			delete("biguan");
+			delete("breakup_time");
+			delete("breakuproom");
 			tell_object(this_object(),"你终于忍耐不住，破关而出，先前的修行也荒废了。\n");
 		}
 		else if(query_temp("closed")){
