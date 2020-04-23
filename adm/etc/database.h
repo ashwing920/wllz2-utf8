@@ -1,7 +1,7 @@
 // database.h
 
 // 是否采用永久连接
-#undef STATIC_LINK
+#define STATIC_LINK
 // 是否调试状态
 // #define DEBUG
 // 是否允许分站新玩家注册

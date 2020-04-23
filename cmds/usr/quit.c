@@ -99,7 +99,7 @@ int main(object me, string arg)
 
 	}
 #ifdef DB_SAVE
-    DATABASE_D->db_set_player(query("id", me),"online",0);
+    DATABASE_D->db_set_player(me->query("id"),"online",0);
 #endif
 	TOPTEN_D->topten_checkplayer(me);
 	me->save();
