@@ -5,7 +5,7 @@
 
 inherit ROOM;
 
-static int total = 1000;
+static int total = 100000;
 
 void create()
 {
@@ -78,5 +78,5 @@ void reset()
 {
 	set("breaked",0);
 	delete("exits/north");
-	total = 1000;
+	total = 100000;
 }

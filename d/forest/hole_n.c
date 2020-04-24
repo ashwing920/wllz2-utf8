@@ -13,12 +13,16 @@ void create()
 	set_maze_npcs(__DIR__"npc/tuying");
 	set_maze_npcs(__DIR__"npc/bianfu");
 	set_maze_npcs(__DIR__"npc/dushe");
-	
+	set_maze_npcs( ([
+		__DIR__"npc/tuying":random(2),
+		__DIR__"npc/bianfu":random(2),
+		__DIR__"npc/dushe":random(3),
+	]) );	
 	//迷宫内出现生物的随机度
-	set_random_rate(50);
-	
+	set_npcs_rate(50);
+	//set_lonely_create(1);
 	//迷宫出现生物个数
-	set_char_num(5);
+	//set_char_num(5);
 
 	//迷宫的单边长
 	set_maze_long(20);

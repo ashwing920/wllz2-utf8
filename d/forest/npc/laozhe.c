@@ -155,6 +155,7 @@ void kaifeng(object me)
 	message_vision("过了半晌，一切终于恢复了平静，$N气喘吁吁的说道：祭祀完成，好好把握它的灵性吧！\n",this_object());
 	ENHANCE_D->enhance_weapon(weapon,i*i + 10,type);
 	me->set("weapon/name",weapon->name());
+	CHANNEL_D->do_channel(find_object(MASTER_OB),"rumor",sprintf("绝缘之地大开,绝世神兵%s现世！",weapon->name()));
 	me->set("weapon/id",weapon->query("id"));
 	me->set("weapon/rigidity",1);
 	me->set("weapon/weapon_prop",weapon->query("weapon_prop"));

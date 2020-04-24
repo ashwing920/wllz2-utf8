@@ -102,7 +102,7 @@ void event_midnight()
 {
         string msg;
         int m, d;
-
+		night= 1;
         m = query_month();
         d = query_day();
 

@@ -284,7 +284,9 @@ int do_weapon()
 			}
 		}
 	else    {
+		say("开始制造1\n");
 		me->delete_temp("condition_ok");
+		say("开始制造\n");
 		weapon = creat_weapon();
 		weapon->move(me);
 	}
@@ -297,6 +299,7 @@ object creat_weapon()
 	string mask;    //the verible that record the type of weapon
 	me = this_player();
 	mask = me->query("weapon/type");
+	write(mask+"ok\n");
 	switch(mask)    {
 		case "剑":
 			weapon = new("/d/npc/m_weapon/weapon/m_sword",1);
