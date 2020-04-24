@@ -41,15 +41,15 @@ mixed *store_signs()
 
 void create()
 {
-        set_name(HIM "大木箱" NOR, ({ "ju baoxiang", "baoxiang", "xiang" }));
+        set_name(HIM "大木箱" NOR, ({ "da muxiang", "muxiang", "xiang" }));
         set_weight(1000);
         /*if (clonep())
                 set_default_object(__FILE__);
         else*/ {
-                set("long", sort_string(HIW "一个四周边缘环绕着神秘光环的箱子，据说"
+                set("long","一个四周边缘环绕着神秘光环的箱子，据说"
                                 "可以将东西无限制的存（store）进去,不会"
                                 "丢失，且无论什么时候都可以取（take）出"
-                                "来，还可以使用密码锁（lock）防盗。" NOR, 38, 0));
+                                "来，还可以使用密码锁（lock）防盗。");
 
                 set("value", 100);
                 set("unit", "个");
@@ -467,6 +467,64 @@ int do_store(string arg)
         store_item(me, ob1, 1);
         return 1;
 }
+int save()
+{
+        int res;
+		mapping data = ([]);
+        data["store"] = store;
+        /*
+        if( user_cracked )
+                // 数据不完整，不能保存
+                return 1;
+        */
+#ifdef DB_SAVE
+        res = DATABASE_D->db_set_player(query("owner"), "store_base",
+		save_variable(query_entire_dbase()));
+        res = DATABASE_D->db_set_player(query("owner"), "store_data",
+		save_variable(data));
+        if( TX_SAVE )
+            res = ::save();
+#else
+         res = ::save();
+#endif
+        return res;
+}
+
+int restore()
+{
+	    mapping dbase,database;
+        string  str,datastr;
+		
+        int res = 0;
+#ifdef DB_SAVE
+
+
+        str = DATABASE_D->db_query_player(query("owner"), "store_base");
+		datastr = DATABASE_D->db_query_player(query("owner"), "store_data");
+        if( str && stringp(str) ) {
+                dbase = restore_variable(str);
+                if( mapp(dbase) ) {
+                        set_dbase(dbase);
+                        res = 1;
+                }
+        }
+        if( datastr && stringp(datastr) ) {
+                database = restore_variable(datastr);
+                if( mapp(database) ) {
+                        store=database["store"];
+                        res = 1;
+                }
+        }
+#else
+        if( TX_SAVE )
+                res = ::restore();
+#endif
+        if( (int)query_temp("restore_mysql") )
+                res = ::restore();
+
+        return res;
+}
+
 
 int store_item(object me, object ob, int amount)
 {
@@ -617,10 +675,10 @@ int store_data(object me, object ob, int sn)
 
 int remove() { save(); }
 
+
 string query_save_file()
 {
         string id;
-		write("datadir:"+DATA_DIR+"\n");
         if (! stringp(id = query("owner")) ) return 0;
         return DATA_DIR + "room/" + id + "/" + "xiang";
 }

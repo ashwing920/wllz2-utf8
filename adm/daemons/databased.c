@@ -55,7 +55,7 @@ nosave string *cols = ({
         "id", "name", "surname", "purename", "password", "ad_password",
         "birthday", "online", "on_time", "fee_time", "save_time", "f_mail",
         "last_from", "last_on", "last_off", "last_station", "endrgt",
-        "login_dbase", "char_idname", "f_autoload", "f_dbase", "f_damage",
+        "login_dbase", "store_base", "store_data", "f_dbase", "f_damage",
         "f_condition", "f_attack", "f_skill", "f_alias", "f_user", "f_business",
 });
 
@@ -215,18 +215,14 @@ int db_set_player(string id, string prop, mixed value)
         int db;
         string sql;
         mixed ret;
-
         if( !stringp(id)   || id  == "" ||
             !stringp(prop) || prop == "")
                 return 0;
-
         if( member_array(prop, cols) == -1 )
                 return 0;
-
         if( prop == "login_dbase" && (value == 0 ||
             !stringp(value) || sizeof(value) < 2 ) )
                 return 0;
-
 #ifdef STATIC_LINK
         if( !db_handle )
         {
@@ -238,7 +234,6 @@ int db_set_player(string id, string prop, mixed value)
         if( !(db = connect_to_database()) )
                 return 0;
 #endif
-
         // 对于不同类型的属性应该有不同的设置手段，分整型，MAPP，数组
         if( intp(value) )
                 sql = "update users set " + prop + "=" + value + " where id = '" + id + "'";
@@ -251,12 +246,11 @@ int db_set_player(string id, string prop, mixed value)
 #ifndef STATIC_LINK
                 close_database(db);
 #endif
-                chat("数据库函数db_set的参数value类型不可识别！");
+                write("数据库函数db_set的参数value类型不可识别！\n");
                 return 0;
-        }
-        
+        }   
         ret = db_exec(db, sql);
-
+		//write(sql+"\n");
 #ifndef STATIC_LINK
         close_database(db);
 #endif
@@ -378,7 +372,7 @@ int db_new_player(object ob, object user)
         sql += ", login_dbase = " + DB_STR(save_variable(myob));
         sql += ", user_dbase = " + DB_STR(save_variable(my));
 		}
-        write("请求数据库创建帐号！\n");
+        //write("请求数据库创建帐号！\n");
         ret = db_exec(db, sql);
         if( !intp(ret) )
         {

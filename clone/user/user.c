@@ -199,7 +199,7 @@ int restore()
 
 #ifdef DB_SAVE
         res = DATABASE_D->db_restore_all(this_object());
-		write(sprintf("connect:(%d)",res));
+		//write(sprintf("connect:(%d)",res));
         if( (int)query_temp("restore_mysql") )
                  res = ::restore();
 
