@@ -2,12 +2,12 @@
 
 #include <dbase.h>
 #include <weapon.h>
-
+#include <ansi.h>
 int wear()
 {
 	object owner;
 	mapping armor_prop, applied_prop;
-	string *apply, type;
+	string *apply, type,glove;
 
 	owner = environment();
 
@@ -21,7 +21,6 @@ int wear()
 	type = query("armor_type");
 	if( owner->query_temp("armor/" + type) )
 		return notify_fail("你已经穿戴了同类型的护具了。\n");
-
 	owner->set_temp("armor/" + type, this_object());
 	apply = keys(armor_prop);
 	applied_prop = owner->query_temp("apply");
@@ -140,4 +139,11 @@ int unequip()
 
 	delete("equipped");
 	return 1;
+}
+mixed hit_ob(object me, object victim, int damage_bonus)
+{
+
+
+	tell_object(me, HIG "自动攻击测试！"+damage_bonus+"\n" NOR );
+	return ;
 }

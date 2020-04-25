@@ -146,7 +146,7 @@ int accept_object(object who, object ob)
 		  "      棍(stick)\n"+
 		  "      杖(staff)\n"+
 		  "      锤(hammer)\n"+
-		  "      鞭(whip)\n");          
+		  "      鞭(whip)\n");
 	say("这位"+RANK_D->query_respect(who)+"要造什么兵器？决定了告诉我(answer)。\n");
 	return 1;
 
@@ -246,7 +246,8 @@ int do_weapon()
 	&& objectp(obj = present("my staff", me))
 	&& objectp(obj = present("my whip", me))
 	&& objectp(obj = present("my club", me))
-	&& objectp(obj = present("my hammer", me)))
+	&& objectp(obj = present("my hammer", me))
+	&& objectp(obj = present("my glove", me)))
 	{
 		say("欧冶子脸色一沉：您的武器不就在你手边么？还来干什么！\n");
 		return 1;
@@ -319,6 +320,9 @@ object creat_weapon()
 		case "鞭":
 			weapon = new("/d/npc/m_weapon/weapon/m_whip",1);
 			return weapon;
+		case "手":
+			weapon = new("/d/npc/m_weapon/weapon/m_glove",1);
+			return weapon;
 	}
 }
 int do_change()
@@ -347,8 +351,8 @@ int do_modify(string arg)
 	if( !arg || arg == "") return notify_fail("指令格式：改 （兵器类型）\n");
 	
 	if(arg != "剑" && arg != "刀" && arg != "棍" 
-	&& arg != "鞭" && arg != "锤" && arg != "杖" )
-		return notify_fail("请输入你要修改的类型！（剑、刀、棍、鞭、锤、杖）\n");
+	&& arg != "鞭" && arg != "锤" && arg != "杖"  && arg != "手套" )
+		return notify_fail("请输入你要修改的类型！（剑、刀、棍、鞭、锤、杖、手套）\n");
 	
 	if( arg == (string)me->query("weapon/type"))
 		return notify_fail(this_object()->name()+"疑道：你这不是送钱给我花吗？\n");
@@ -381,6 +385,11 @@ int do_modify(string arg)
 			break;
 		case "杖":
 			me->set("weapon/type","杖");
+			tell_object(me,this_object()->name()+"说道：兵器修改好了，重新进入后才可以生效！\n");
+			me->save();
+			break;
+		case "手套":
+			me->set("weapon/type","手套");
 			tell_object(me,this_object()->name()+"说道：兵器修改好了，重新进入后才可以生效！\n");
 			me->save();
 			break;

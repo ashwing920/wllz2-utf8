@@ -5,6 +5,7 @@
 inherit NPC;
 int ask_me();
 int ask_armor();
+int ask_glove();
 int ask_job();
 int ask_changename();
 
@@ -32,6 +33,7 @@ LONG
 		"新防具": (: ask_armor :),
 		"job" : (: ask_job :),
 		"工作" : (: ask_job :),
+		"手套"	:(:ask_glove:),
 		"改名": (: ask_changename :),
 	]));
 	setup();
@@ -44,6 +46,8 @@ void init()
 	add_action("do_make","制作");
 	add_action("do_make","make");
 	add_action("do_changename","改");
+	add_action("do_weave","编织");
+	add_action("do_weave","weave");
 }
 
 int accept_object(object who, object ob)
@@ -105,11 +109,111 @@ int accept_object(object who, object ob)
 			return 1;
 		}
 	}
+	else if ((string)ob->query("id") == "yinjiao si") {
+		if(!who->query_temp("glove"))  {
+			command("say 你我素不相识这样不好，您请回吧！");
+			return 0;
+		}
+		who->set_temp("m_glove",1);
+		who->add_temp("panlong",1);
+		message("vision","念慈低头检视了一下手中的"+(string)ob->query("name")+"点了点头说：那好，我们现在就开始缝制。\n", who);
+		write("请这位"+RANK_D->query_respect(who)+"给手套起名字吧！(weave 手套的名字)\n");		
+		return 1;
+	}
 	else
 	{
+		write(ob->query("name")+"\n");
 		command("say 你给我这个干什么?");
 		return 0;
 	}
+}
+
+int do_weave(string arg)
+{
+	string o_name,w_name,tmp;
+	object glove,make_time;
+	object me;
+	int i;
+
+	me = this_player();
+	
+	if(!me->query_temp("m_glove")) return 0;
+	
+	if((me->query("weapon/make")) ){
+		say("念慈一脸茫然：您已经有一把自造的武器了，还来干什么？难到不可手么？\n");
+		return 1;
+	}
+	if( !arg )
+		return notify_fail("念慈认真的说：想好手套的名称及代号后在对我说。\n");
+
+	sscanf(arg ,"%s" ,w_name);
+	if(!w_name)
+		return notify_fail(name() +"说道：使用weave 手套的名字。\n");
+
+	tmp = clean_color(w_name);
+	
+	if(strlen(tmp) > 4 || strlen(tmp) < 1)
+		return notify_fail(name() +"说道：兵器的名字必须为 1 到 4 个字。\n");
+	
+	i=strlen(tmp);
+
+	while(i--){
+		if( tmp[i]<=' ' )
+			return notify_fail(name() +"说道：对不起，你的中文名字不能用控制字元。\n");
+		if( i%2==0 && !is_chinese(tmp[i..<0]) )
+			return notify_fail(name() +"说道：对不起，请您用「中文」取名字。\n");
+	}
+
+	me->delete_temp("m_glove");
+
+	if(me->query_temp("panlong") ) o_name="盘龙银绞丝";
+	make_time=NATURE_D->game_time();
+	message_vision(me->name()+"沉吟了一会，对念慈悄声说了几句话。念慈点了点头。说：好吧！\n",me );
+	if((me->query("qi"))<(me->query("max_qi"))
+	|| (me->query("jing"))<(me->query("max_jing"))
+	|| (me->query("neili"))<(me->query("max_neili"))){
+		message_vision(HIR"\n\n突然$N觉得气血一阵翻涌，一口真气接不上来......\n" NOR, me);
+		me->set("neili",0);
+		me->delete_temp("glove");
+		me->unconcious();
+		return 1;
+	}
+	me->set("qi",10);
+	me->set("jing",10);
+	me->set("neili",0);
+
+	me->set("glove/make",1);
+	me->set("glove/name",convert_color(w_name)+NOR);
+	me->set("glove/lv",1);
+	me->set("glove/or",o_name);
+	me->set("glove/value",0);
+	me->set("glove/type","glove");
+	me->set("glove/time",make_time);
+
+	glove=new("/d/npc/m_weapon/weapon/m_glove",1);
+	glove->move(this_player());
+	message_vision(CYN"\n念慈抹净嘴边的鲜血,不负所望,总算做好了!\n"NOR,me );
+	return 1;
+}
+int ask_glove()
+{
+	object me;
+	me = this_player();
+
+	if(!(int)(me->query("glove/make")) ){
+		me->add_temp("glove",1);
+		command("say 据说嘉兴湖心小洞里有外太空陨石消息,如果能弄来炼出传说中的盘龙丝就好了\n。");
+		return 1;
+	} 
+	if(present("my glove",me)){
+		command("say "+ RANK_D->query_respect(me)+"不是已经有了手套了吗？");
+		return 1;
+	}
+	command("say 这么重要的东西都丢了呀？好吧，我再给你一件。");
+	ob =new("/d/npc/m_weapon/weapon/m_glove",1);
+	ob->move(me,1);
+	command("say 小心点哦，别再搞丢了。");
+	return 1;
 }
 
 int ask_armor()

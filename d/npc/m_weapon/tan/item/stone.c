@@ -62,6 +62,12 @@ int do_yelian()
 			message_vision(HIY "补天石啪的一声爆响听起来竟象是竹子燃烧的声音！！\n" NOR, me );
 			destruct(stone);	
 			break;
+		case 3:
+			new_ob=new("/d/npc/m_weapon/tan/item/panlong",1);
+			new_ob->move(me);			
+			message_vision(HIY "补天石慢慢融化变成一根银色丝状物！！\n" NOR, me );
+			destruct(stone);	
+			break;
 		default:
 			message_vision(HIY "补天石渐渐变软，终于化做一滩泥水渗入地下，不见了。\n" NOR, me );
 			destruct(stone);

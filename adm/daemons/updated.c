@@ -9,7 +9,7 @@ private void create() { seteuid(getuid()); }
 
 void check_user(object me)
 {
-	object weapon,cloth,shoe,ring,horse,mailbox;
+	object weapon,cloth,shoe,ring,horse,mailbox,glove;
 	mapping my;
 
 	my = me->query_entire_dbase();
@@ -87,9 +87,13 @@ void check_user(object me)
 		destruct(cloth);
 		cloth = new("/clone/misc/m_cloth");
 	}
-
+	if(my["glove"] && my["glove"]["make"]){
+		glove = new("/d/npc/m_weapon/weapon/m_glove",1);
+	}
 	cloth->move(me);
 	cloth->wear();
+	glove->move(me);
+	glove->wear();
 	shoe->move(me);
 	shoe->wear();
 

@@ -308,6 +308,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
 	string limb,result,dodge_msg,parry_msg,map_force,die_msg;
 	string attack_skill, martial_skill, dodge_skill, parry_skill;
 	string me_family,victim_family;
+	object glove;
 	mixed foo;
 	int ap, dp, pp ;
 	int damage, damage_bonus, defense_factor;
@@ -523,7 +524,6 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
 			damage += action["damage"] /10 * (damage / 20);
 
 		damage_bonus = (int)me->query_str();
-
 		if( my["jiali"] && (my["neili"] > my["jiali"]) ) {
 			if( stringp(martial_skill = me->query_skill_mapped("force")) ) {
 				foo = SKILL_D(martial_skill)->hit_ob(me, victim, damage_bonus, my["jiali"]);
@@ -538,10 +538,8 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
 				}
 			}
 		}
-
 		if( action["force"] )
 			damage_bonus += action["force"] * (damage_bonus / 100);
-
 		if( stringp(martial_skill = me->query_skill_mapped(attack_skill)) ) {
 			foo = SKILL_D(martial_skill)->hit_ob(me, victim, damage_bonus);
 			if( stringp(foo) ) result += foo;
@@ -553,6 +551,12 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
 			if( stringp(foo) ) result += foo;
 			else if(intp(foo) ) damage_bonus += foo;
 		} else {
+			if (me->query_temp("armor/glove")) {
+				glove=me->query_temp("armor/glove");
+				foo = glove->hit_ob(me, victim, damage_bonus);
+				if( stringp(foo) ) result += foo;
+				else if(intp(foo) ) damage_bonus += foo;				
+			}
 			foo = me->hit_ob(me, victim, damage_bonus);
 			if( stringp(foo) ) result += foo;
 			else if(intp(foo) ) damage_bonus += foo;
@@ -639,17 +643,47 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type)
 	if( objectp(weapon) )
 	result = replace_string( result, "$w", weapon->name() );
 	else if( stringp(action["weapon"]) )
-	result = replace_string( result, "$w", action["weapon"] );
+	{
+		if (me->query_temp("armor/glove"))
+			result = replace_string( result, "$w", "手中"+me->query("glove/name")+"催发"+action["weapon"] );
+		else
+			result = replace_string( result, "$w", action["weapon"] );
+	}
 	else if( attack_skill == "unarmed" )
+	{
+		if (me->query_temp("armor/glove"))
+			result = replace_string( result, "$w", "手中"+me->query("glove/name")+"催发无形劲气");
+		else
 		  result = replace_string(result, "$w", "无形劲气" );
+	}
 	else if( attack_skill == "cuff" )
-		result = replace_string( result, "$w", "拳头" );
+	{
+		if (me->query_temp("armor/glove"))
+			result = replace_string( result, "$w", "手中"+me->query("glove/name")+"催发拳罡");
+		else
+			result = replace_string( result, "$w", "拳罡" );
+	}
 	else if( attack_skill == "finger" )
-		result = replace_string( result, "$w", "指间一股真气" );
+	{
+		if (me->query_temp("armor/glove"))
+			result = replace_string( result, "$w", "手中"+me->query("glove/name")+"催发指间一股真气");
+		else
+			result = replace_string( result, "$w", "指间一股真气" );
+	}
 	else if( attack_skill == "strike" )
-		result = replace_string( result, "$w", "无形掌力" );
+	{
+		if (me->query_temp("armor/glove"))
+			result = replace_string( result, "$w", "手中"+me->query("glove/name")+"催发无形掌力");
+		else
+			result = replace_string( result, "$w", "无形掌力" );
+	}
 	else if( attack_skill == "claw" )
-		result = replace_string( result, "$w", "手爪" );
+	{
+		if (me->query_temp("armor/glove"))
+			result = replace_string( result, "$w", "手中"+me->query("glove/name")+"化为手爪");
+		else
+			result = replace_string( result, "$w", "手爪" );
+	}
 
 	if(!me->query("env/combat"))
 	message_vision(result, me, victim );
