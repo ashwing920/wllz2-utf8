@@ -27,5 +27,6 @@ LONG
 	]));
 	set("owner", "ROOM_OWNER");
 	set("room_owner_id","ROOM_OWNER_ID");
+	//**    set("research_improve", 30);  //30% improved
 	setup();
 }

@@ -21,5 +21,6 @@ LONG
 	]));
 	set("owner", "东京热");
 	set("room_owner_id","avhot");
+	set("research_improve",30);  //20% improved
 	setup();
 }

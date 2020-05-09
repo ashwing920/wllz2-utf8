@@ -11,7 +11,7 @@ int main(object me, string arg)
 {
 	string skill, skill_name;
 	object where = environment(me);
-	int my_skill, jing_cost, times, pertimes;
+	int my_skill, jing_cost, times, pertimes,improve;
 	int t = time();
 
 	if (me->is_busy())
@@ -61,15 +61,20 @@ int main(object me, string arg)
 		jing_cost *= 2;
 		me->set_skill(skill,0);
 	}
-
+	improve=0;
 	if( (me->query("potential") - me->query("learned_points")) < times )
 		return notify_fail("你的潜能不够研究这么多次了。\n");
-
 	me->set_temp("time/research",t);
 	write(HIM"你开始研究「"+to_chinese(skill)+"」当中的精髓。\n"NOR,);
 
 	my_skill = me->query_skill(skill, 1);
-
+	if(my_skill < 400)
+		improve=me->query_int() + me->query_spi();
+	else
+		improve=me->query_int() / 2;
+	write(sprintf("原始improve:%d\n",improve));
+	improve+=improve * where->query("research_improve") / 100;
+	write(sprintf("房屋加成后improve:%d\n",improve));
 	if( (int)me->query("jing") > jing_cost * times )
 	{
 		if( (string)SKILL_D(skill)->type()=="martial"
@@ -85,10 +90,7 @@ int main(object me, string arg)
 			for (pertimes = 1; pertimes <= times ; pertimes ++)
 			{
 				me->add("learned_points",1);
-				if(my_skill < 400)
-					me->improve_skill(skill, random(me->query_int()) + random(me->query_spi()));
-				else
-					me->improve_skill(skill, random(me->query_int()) / 2);
+				me->improve_skill(skill, random(improve));
 			}
 		}
 	} else

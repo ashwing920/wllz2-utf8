@@ -23,5 +23,6 @@ LONG
 	set("exits", ([
 		"east" : __DIR__"room1", //客厅
 	]));
+	//**    set("research_improve", 10);  //10% improved
 	setup();
 }

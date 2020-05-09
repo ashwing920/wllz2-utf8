@@ -18,6 +18,7 @@ LONG
 	]));
 	set("exits", ([
 		"west" : __DIR__"room4",
+		"east" : __DIR__"room5",
 		"south"  : __DIR__"room1",
 	]));
 	set("owner", "东京热");

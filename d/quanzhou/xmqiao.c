@@ -1,5 +1,5 @@
 // xmqiao.c 新门吊桥
-
+#include <localtime.h>
 inherit ROOM;
 
 int exit(int);
@@ -21,7 +21,8 @@ void init()
         int t;          // time of the day in minutes
         mixed *local;
 
-        local = localtime(time()*60);
+        local = localtime(time());
+		write(sprintf("%4d年%2d月%2d日%2d时%2d分%2d秒\n",local[LT_YEAR],local[LT_MON]+1,local[LT_MDAY],local[LT_HOUR],local[LT_MIN]+1,local[LT_SEC]+1));
         t = local[2]*60 + local[1];
 
         set("exits", (: exit :));
@@ -33,11 +34,11 @@ int exit(int mode)
         mixed *local;
         object room;
 
-        local = localtime(time()*60);
+        local = localtime(time());
         t = local[2]*60 + local[1];
         if ( !( room = find_object(__DIR__"luanshi")) )
                 room = load_object(__DIR__"luanshi");
-
+		write(sprintf("testtime:%d\n",t));
         set("exits/east", __DIR__"xinmen");
         set("exits/south", __DIR__"taoci");
         set("exits/north", __DIR__"datiepu");

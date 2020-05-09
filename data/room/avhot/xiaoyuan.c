@@ -14,7 +14,7 @@ void create()
 LONG
 );
 	set("item_desc", ([
-		"paizi"   : "天上人间 - 东京热\n",
+		"paizi"   : "会所 - 东京热\n",
 	]));
 
 	set("key", "key of avhot");

@@ -18,7 +18,7 @@ void create()
 	if (clonep())
 		set_default_object(__FILE__);
 	else {
-		set("long", "一把用来开启天上人间(avroom)的钥匙。
+		set("long", "一把用来开启会所(avroom)的钥匙。
 。\n");
 		set("unit", "把");
 		set("no_pawn", 1);
